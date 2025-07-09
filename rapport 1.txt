@@ -1,0 +1,94 @@
+Rapport sur le Perceptron : Concepts, Visualisation, Convergence, Classification Multi-Classes et Évaluation
+
+
+1. Introduction au Perceptron
+Le perceptron est un modèle de base en apprentissage automatique utilisé pour la classification binaire. Il apprend à distinguer deux classes à partir d’exemples étiquetés. Le modèle est simple : il associe à chaque caractéristique une pondération (un poids), et calcule une somme pondérée. Si cette somme dépasse un certain seuil, l’exemple est classé dans une classe, sinon dans l’autre.
+
+Ce modèle fonctionne bien lorsque les classes sont séparées par une frontière linéaire, c’est-à-dire qu’on peut tracer une droite (en 2D) ou un plan (en dimension supérieure) qui sépare parfaitement les classes.
+
+2. Génération et Visualisation de Données Linéairement Séparables
+Pour mieux comprendre et tester le perceptron, il est utile de créer des données artificielles qui respectent cette condition de séparation linéaire. Par exemple, on peut générer deux groupes de points dans le plan, chacun centré autour d’un point différent, et suffisamment éloignés pour qu’on puisse tracer une droite qui sépare ces deux groupes sans erreur.
+
+Visualiser ces données est important pour vérifier que la séparation est possible et observer la frontière apprise par le perceptron. La droite de séparation représente la frontière où le perceptron change la classe prédite.
+
+Lorsqu’on lance plusieurs fois l’entraînement, on remarque que la droite apprise varie légèrement selon l’initialisation et les données, mais elle reste toujours une frontière correcte entre les deux classes.
+
+3. Analyse de la Convergence du Perceptron
+L’apprentissage du perceptron est un processus itératif où les poids sont ajustés à chaque erreur. Ce processus est influencé par un paramètre clé : le taux d’apprentissage, qui détermine la taille des ajustements à chaque étape.
+
+Si le taux d’apprentissage est trop faible, les ajustements sont très petits et l’apprentissage devient très lent. Le modèle peut mettre beaucoup de temps à converger vers une solution correcte.
+
+Si le taux est trop élevé, les poids peuvent osciller et ne jamais stabiliser, ce qui empêche la convergence.
+
+Il existe donc un taux d’apprentissage optimal intermédiaire qui permet au perceptron d’apprendre efficacement.
+
+Enfin, la nature des données, notamment leur dispersion ou la présence de bruit, influence aussi la convergence : plus les données sont propres et bien séparées, plus l’apprentissage sera rapide et stable.
+
+4. Classification Multi-Classes avec la Stratégie "Un contre Tous"
+Le perceptron de base ne gère que deux classes. Pour les problèmes à plusieurs classes, une méthode simple consiste à entraîner un perceptron par classe. Chaque perceptron apprend à reconnaître une classe spécifique contre toutes les autres.
+
+Par exemple, pour classer des fleurs en trois espèces, on entraîne trois perceptrons :
+
+Le premier apprend à reconnaître la classe "Setosa" contre les deux autres.
+
+Le deuxième apprend à reconnaître "Versicolor" contre les autres.
+
+Le troisième apprend à reconnaître "Virginica" contre les autres.
+
+Lors de la classification, on demande à tous les perceptrons leur degré de confiance, et on choisit la classe correspondant au perceptron le plus sûr.
+
+Cette approche est simple et modulaire, mais elle peut rencontrer des difficultés :
+
+Certaines zones peuvent être ambiguës, revendiquées par plusieurs perceptrons ou par aucun.
+
+Chaque perceptron voit sa classe positive en minorité, ce qui peut compliquer l’apprentissage.
+
+5. Utilisation du Dataset Iris
+Le dataset Iris est un classique en apprentissage automatique. Il contient des mesures de fleurs réparties en trois espèces.
+
+On remarque que :
+
+Une classe (Setosa) est facilement séparable des autres.
+
+Les deux autres (Versicolor et Virginica) ont des zones de chevauchement, ce qui complique la classification.
+
+Ce dataset est idéal pour tester les perceptrons multi-classes.
+
+6. Évaluation Rigoureuse des Performances
+Pour bien évaluer un modèle, il faut séparer les données en trois ensembles :
+
+Un ensemble d’entraînement, pour apprendre les paramètres du modèle.
+
+Un ensemble de validation, pour ajuster les paramètres et éviter le sur-apprentissage.
+
+Un ensemble de test, utilisé uniquement pour évaluer la performance finale.
+
+Cette méthode permet d’obtenir une estimation fiable de la capacité du modèle à généraliser sur des données nouvelles.
+
+On mesure la performance avec des métriques comme l’accuracy (taux de bonnes classifications), et on peut utiliser des matrices de confusion pour voir les erreurs entre classes.
+
+7. Questions de Réflexion et Analyse
+Convergence : Le perceptron converge garanti seulement si les classes sont linéairement séparables.
+
+Initialisation : L’initialisation des poids peut influencer la vitesse d’apprentissage, mais pas la solution finale dans un problème linéairement séparable.
+
+Taux d’apprentissage : Il doit être choisi pour équilibrer vitesse et stabilité d’apprentissage.
+
+Généralisation : La capacité à bien classer de nouvelles données dépend de la séparation des classes et de la quantité de bruit.
+
+Problème XOR : Le perceptron simple ne peut pas résoudre des problèmes non linéaires comme XOR. Des réseaux de neurones plus complexes sont nécessaires.
+
+Données bruitées : Le perceptron peut avoir des difficultés si les données sont très bruitées ou mal séparées.
+
+Classes déséquilibrées : Lorsque certaines classes sont rares, l’apprentissage peut être biaisé.
+
+Normalisation : Normaliser les données avant l’apprentissage facilite la convergence et stabilise l’entraînement.
+
+Conclusion
+Le perceptron est un modèle simple mais fondamental en apprentissage automatique, capable de résoudre des problèmes de classification linéairement séparables. En générant et visualisant des données, on comprend mieux son fonctionnement et ses limites.
+
+La stratégie "Un contre Tous" permet d’étendre le perceptron à la classification multi-classes, avec ses avantages et contraintes.
+
+L’évaluation rigoureuse avec séparation des données en ensembles d’entraînement, validation et test est cruciale pour mesurer la performance réelle du modèle.
+
+Enfin, le choix des paramètres, la qualité des données et la complexité du problème influencent grandement la réussite de l’apprentissage.
